@@ -1,0 +1,116 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+  def globalConfiguration = rootProject.extensions.getByName("ext")
+
+  compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
+  buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
+
+  defaultConfig {
+    minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+    targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
+
+    applicationId globalConfiguration.getAt("androidApplicationId")
+    versionCode globalConfiguration.getAt("androidVersionCode")
+    versionName globalConfiguration.getAt("androidVersionName")
+
+    multiDexEnabled globalConfiguration.getAt("multiDexEnabled")
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_7
+    targetCompatibility JavaVersion.VERSION_1_7
+  }
+
+  buildTypes {
+    debug {
+      minifyEnabled false //混淆文件
+
+    }
+
+    release {
+      minifyEnabled true //混淆
+      zipAlignEnabled true
+      shrinkResources true //移除无用文件
+
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro' //混淆文件
+    }
+  }
+
+  productFlavors {
+    dev {
+      minSdkVersion 21
+      applicationId "com.dcsystem"
+    }
+    prod {
+      applicationId "com.dcsystem"
+    }
+  }
+}
+
+dependencies {
+  def dependencies = rootProject.ext.supportDependencies
+
+  compile(dependencies.support_v4) {
+    exclude module: 'support-v4'
+  }
+  compile supportDependencies.appcompat_v7
+  compile dependencies.design
+  compile dependencies.recyclerView
+  compile dependencies.cardView
+  compile dependencies.gridlayout
+  compile dependencies.multidex
+
+  apt dependencies.daggerCompiler
+  compile dependencies.dagger
+  provided dependencies.annotation
+  compile dependencies.butterknife
+
+  compile dependencies.rxJava
+  compile dependencies.rxAndroid
+
+  compile dependencies.retrofit2
+  compile dependencies.retrofit2_gson
+  compile dependencies.retrofit2_rxjava
+
+  compile dependencies.okhttp3
+  compile dependencies.okhttp3_interceptor
+
+  compile dependencies.gson
+
+  compile dependencies.auto_value
+  apt dependencies.auto_value
+
+  apt dependencies.auto_value_gson
+  provided dependencies.auto_value_gson
+
+  compile dependencies.glide
+
+  compile dependencies.recovery
+
+  compile dependencies.swipelayout
+  compile dependencies.photoView
+  compile dependencies.pickView
+  compile dependencies.flycoTabLayout
+
+  compile dependencies.klog
+  testCompile dependencies.leakCanary_no_op
+  testCompile dependencies.junit
+  testCompile dependencies.roblectric
+  testCompile dependencies.mockito
+
+  compile dependencies.luban
+//  compile dependencies.fir
+
+  compile dependencies.zxing
+
+  compile 'de.hdodenhof:circleimageview:2.0.0'
+  compile 'cn.bingoogolapple:bga-qrcodecore:1.1.3@aar'
+  compile 'cn.bingoogolapple:bga-zxing:1.1.3@aar'
+  compile 'com.github.Aspsine:IRecyclerView:0.0.5'
+
+  compile 'com.airbnb.android:epoxy:1.5.0'
+  apt 'com.airbnb.android:epoxy-processor:1.5.0'
+  //  compile 'com.android.support:support-annotations:25.1.0'
+}

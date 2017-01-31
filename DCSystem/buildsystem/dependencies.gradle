@@ -1,0 +1,155 @@
+allprojects {
+  repositories {
+    jcenter()
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+  }
+}
+
+ext {
+
+  //Android
+  androidBuildToolsVersion = "24.0.0"
+  androidMinSdkVersion = 16 //Recovery要求的最低版本
+  androidTargetSdkVersion = 21
+  androidCompileSdkVersion = 24
+
+  //Version
+  supportLibraryVersion = "24.2.1"
+
+  //Build
+  sourceCompatibility = JavaVersion.VERSION_1_8
+  targetCompatibility = JavaVersion.VERSION_1_8
+  javaMaxHeapSize = "4g"
+  multiDexEnabled = true
+
+  multidexVersion = "1.0.1"
+
+  //Rx
+  rxJavaVersion = "1.1.9"
+  rxAndroidVersion = "1.2.1"
+
+  //Injection
+  daggerVersion = "2.5"
+  javaxAnnotationVersion = "1.0"
+  javaxInjectVersion = "1"
+  butterKnifeVersion = "8.5.1"
+
+  //Img
+  glideVersion = "3.7.0"
+  lubanVersion = "1.0.9"
+
+  //Model
+  gsonVersion = "2.8.0"
+  autoValueVersion = "1.3"
+  autoValueGsonVersion = "0.4.5"
+
+  //Network
+  retrofitVersion = "2.1.0"
+  okHttp3Version = "3.4.1"
+
+  //View
+  flycoTabLayoutVersion = "2.0.8@aar"
+  swipelayoutVersion = "1.2.0@aar"
+  pickerviewVersion = "2.1.0"
+  photoViewVersion = "1.2.4"
+
+  //Testing
+  junitVersion = "4.12"
+  robolectricVersion = "3.0-rc3"
+  mockitoVersion = "1.10.19"
+
+  //Development
+  leakCanaryVersion = "1.4-beta2"
+  blockCanaryVersion = "1.2.1"
+  recoveryVersion = "0.0.8"
+  klogVersion = "1.5.0"
+
+  //upgrade
+  firVersion = "latest.integration@aar"
+
+  //Media
+  zxingVersion = "3.2.1"
+
+  supportDependencies = [
+
+      support_v4          : "com.android.support:support-v4:${supportLibraryVersion}",
+      appcompat_v7        : "com.android.support:appcompat-v7:${supportLibraryVersion}",
+      design              : "com.android.support:design:${supportLibraryVersion}",
+      recyclerView        : "com.android.support:recyclerview-v7:${supportLibraryVersion}",
+      cardView            : "com.android.support:cardview-v7:${supportLibraryVersion}",
+      gridlayout          : "com.android.support:gridlayout-v7:${supportLibraryVersion}",
+
+      multidex            : "com.android.support:multidex:${multidexVersion}",
+
+      daggerCompiler      : "com.google.dagger:dagger-compiler:${daggerVersion}",
+      dagger              : "com.google.dagger:dagger:${daggerVersion}",
+      annotation          : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+
+      butterknife         : "com.jakewharton:butterknife:${butterKnifeVersion}",
+
+      rxJava              : "io.reactivex:rxjava:${rxJavaVersion}",
+      rxAndroid           : "io.reactivex:rxandroid:${rxAndroidVersion}",
+
+      retrofit2           : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+      retrofit2_gson      : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+      retrofit2_rxjava    : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
+
+      okhttp3             : "com.squareup.okhttp3:okhttp:${okHttp3Version}",
+      okhttp3_interceptor : "com.squareup.okhttp3:logging-interceptor:${okHttp3Version}",
+
+      gson                : "com.google.code.gson:gson:${gsonVersion}",
+      auto_value          : "com.google.auto.value:auto-value:${autoValueVersion}",
+      auto_value_gson     : "com.ryanharter.auto.value:auto-value-gson:${autoValueGsonVersion}",
+
+      glide               : "com.github.bumptech.glide:glide:${glideVersion}",
+
+      leakCanary          : "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
+      leakCanary_no_op    : "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}",
+
+      blockcanary         : "com.github.moduth:blockcanary-android:${blockCanaryVersion}",
+      blockcanary_debug   : "com.github.moduth:blockcanary-android:${blockCanaryVersion}",
+      blockcanary_no_op   : "com.github.moduth:blockcanary-no-op:${blockCanaryVersion}",
+
+      junit                : "junit:junit:${junitVersion}",
+      roblectric           : "org.robolectric:robolectric:${robolectricVersion}",
+      mockito              : "org.mockito:mockito-core:${mockitoVersion}",
+      klog                 : "com.github.zhaokaiqiang.klog:library:${klogVersion}",
+
+      recovery             : "com.zxy.android:recovery:${recoveryVersion}",
+
+      flycoTabLayout       : "com.flyco.tablayout:FlycoTabLayout_Lib:${flycoTabLayoutVersion}",
+      swipelayout          : "com.daimajia.swipelayout:library:${swipelayoutVersion}",
+      photoView            : "com.commit451:PhotoView:${photoViewVersion}",
+      pickView             : "com.bigkoo:pickerview:${pickerviewVersion}",
+
+      fir                  : "im.fir:fir-sdk::${firVersion}",
+
+      luban                : "top.zibin:Luban:${lubanVersion}",
+
+      zxing                : "com.google.zxing:core:${zxingVersion}",
+
+  ]
+
+  domainDependencies = [
+
+      daggerCompiler : "com.google.dagger:dagger-compiler:${daggerVersion}",
+      dagger         : "com.google.dagger:dagger:${daggerVersion}",
+      javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+      javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
+      rxJava         : "io.reactivex:rxjava:${rxJavaVersion}",
+
+  ]
+
+  domainTestDependencies = [
+
+      junit: "junit:junit:${junitVersion}",
+
+  ]
+
+  developmentDependencies = [
+
+      leakCanary: "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
+
+  ]
+}
